@@ -1,0 +1,14 @@
+
+### 过渡
+
+> 过渡也属于常用属性，但是这里单列一个文件，是因为经常把转换、过渡、动画这三个样式搞混，所以都单独写下
+
+- 过渡属性是 `transition`，也是简写属性，可以设置多个属性，用逗号分隔，属性值为 `transition-property`、`transition-duration`、`transition-timing-function`、`transition-delay`，分别为过渡属性、过渡时长、过渡函数、过渡延迟
+  - 过渡函数是 `transition-timing-function`，取值为 `linear`、`ease`、`ease-in`、`ease-out`、`ease-in-out`、`cubic-bezier(n,n,n,n)`，分别为线性、默认、加速、减速、加速减速、贝塞尔曲线
+
+- 比较常用的就是简写属性 `transition`，一般也只设置 transition-property、transition-duration
+
+```css
+transition: width 2s;
+transition: width 2s, height 2s, transform 2s;
+```
