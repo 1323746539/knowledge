@@ -1,0 +1,32 @@
+
+### 1、flex 布局
+
+- flexbox 布局也叫 flex 布局，弹性盒子布局
+- 父元素设置为 flex 布局后，其子元素的 `float、clear、vertical-align` 属性将失效
+- 可以通过 `display: flex` 或 `display: inline-flex` 来设置 flex 布局，分别对应块级元素和行内元素，但是一般使用块级
+
+### 2、父元素属性
+
+- `flex-direction` 子元素排列方向，取值为`row(默认)`、`row-reverse`、`column`、`column-reverse`，分别为从左到右、从右到左、从上到下、从下到上
+- `flex-wrap` 子元素换行方式，取值为`nowrap(默认)`、`wrap`、`wrap-reverse`，分别为不换行、换行、从下到上换行（第一排在下面）
+- `flex-flow` 取值为`flex-direction flex-wrap`，分别为`flex-direction`和`flex-wrap`的合并写法（最好不用分开写）
+- `justify-content` 子元主轴排列方式，取值为`flex-start(默认)`、`flex-end`、`center`、`space-between`、`space-around`，分别为左对齐、右对齐、居中、两端对齐、平均分布
+- `align-items` 子元素交叉轴排列方式，取值为`flex-start`、`flex-end`、`center`、`baseline`、`stretch(默认)`，分别为上对齐、下对齐、居中、基线对齐、拉伸
+- `align-content` 子元素换行排列方式，取值为`flex-start`、`flex-end`、`center`、`space-between`、`space-around`、`stretch(默认)`，分别为上对齐、下对齐、居中、两端对齐、平均分布、拉伸
+
+> 上面的 `align-items` 和 `align-content` 很像，但是后者是针对多行子元素，只有 `flex-wrap: wrap` 时才有效果，单行时，两属性效果一样
+
+
+### 3、子元素属性
+
+- `order` 子元素排列顺序，取值为`0`、`1`、`2`、`3`，默认为`0`，值越小越靠前
+- `flex-grow` 子元素的放大比例，取值为`0`、`1`、`2`，默认为`0`，值越大，占据的空间越大， 0 时不放大
+- `flex-shrink` 子元素的缩小比例，取值为`0`、`1`、`2`，默认为`1`，值越大，占据的空间越小， 0 时不缩小
+- `flex-basis` 子元素的初始大小，取值为`auto`、`<length>`，默认为`auto`，即子元素本身的大小
+- `flex` 取值为`flex-grow flex-shrink flex-basis`，是合并写法
+  - 默认值为`flex: 0 1 auto`，可缩小但不能放大
+  - `flex: 1` 等同于 `flex: 1 1 0%`，即元素尺寸可以弹性增大，也可以弹性变小，但是在尺寸不足时会优先最小化内容尺寸（常用）
+  - `flex: auto` 等同于 `flex: 1 1 auto`，即元素尺寸可以弹性增大，也可以弹性变小，但是在尺寸不足时会优先最大化内容尺寸（不常用）
+  - `flex: 0` 等同于 `flex: 0 1 0%`，即当有剩余空间时，项目宽度为其内容的宽度，最终尺寸表现为最小内容宽度
+  - `flex: none` 等同于 `flex: 0 0 auto`，即项目尺寸为其内容的尺寸，不增大不缩小
+- `align-self` 子元素交叉轴排列方式，和  `align-items` 用法一样，但是作用于单个子元素，优先级高于 `align-items`
