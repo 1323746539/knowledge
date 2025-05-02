@@ -1,13 +1,17 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import MarkdownIt from 'markdown-it'
+import 'viewerjs/dist/viewer.css'
+import { directive as viewerDirective } from 'v-viewer'
 
 const route = useRoute()
 const markdownContent = ref('')
 const htmlContent = ref('')
 const isLoading = ref(true)
 const error = ref(null)
+const contentRef = ref(null)
+
 // 配置 MarkdownIt 允许 HTML
 const md = new MarkdownIt({
   html: true,        // 启用 HTML 标签
@@ -15,6 +19,24 @@ const md = new MarkdownIt({
   linkify: true      // 自动转换 URL 为链接
 })
 const API_BASE_URL = 'http://localhost:3000'
+
+// Viewer 配置选项
+const viewerOptions = {
+  inline: false,     // 是否使用内联模式
+  button: true,      // 是否显示按钮
+  navbar: true,      // 是否显示导航栏
+  title: true,       // 是否显示标题
+  toolbar: true,     // 是否显示工具栏
+  tooltip: true,     // 是否显示提示
+  movable: true,     // 图片是否可移动
+  zoomable: true,    // 图片是否可缩放
+  rotatable: true,   // 图片是否可旋转
+  scalable: true,    // 图片是否可翻转
+  transition: true,  // 是否使用 CSS3 过渡
+  fullscreen: true,  // 是否可以全屏
+  keyboard: true,    // 是否支持键盘
+  url: 'src'         // 获取原图的属性
+}
 
 // 获取并渲染Markdown文件
 const fetchMarkdown = async (path) => {
@@ -36,7 +58,19 @@ const fetchMarkdown = async (path) => {
     // 但需要确保它们被正确渲染，而不是被转义
     htmlContent.value = renderedContent
     
-    console.log('渲染后的HTML内容', htmlContent.value)
+    // 等待DOM更新后初始化图片查看器
+    await nextTick(() => {
+      // 在内容渲染完成后，手动初始化图片查看器
+      if (contentRef.value) {
+        const images = contentRef.value.querySelectorAll('img')
+        if (images.length > 0) {
+          // 为所有图片添加点击样式
+          images.forEach(img => {
+            img.style.cursor = 'pointer'
+          })
+        }
+      }
+    })
   } catch (err) {
     console.error('获取Markdown内容失败:', err)
     error.value = '获取文档内容失败'
@@ -69,7 +103,13 @@ watch(() => route.params.path, (newPath) => {
       {{ error }}
     </div>
     
-    <div v-else class="markdown-content" v-html="htmlContent"></div>
+    <div 
+      v-else 
+      class="markdown-content" 
+      v-html="htmlContent" 
+      ref="contentRef"
+      v-viewer="viewerOptions"
+    ></div>
   </div>
 </template>
 
@@ -144,6 +184,7 @@ watch(() => route.params.path, (newPath) => {
     margin: 1rem auto;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
   }
 }
 </style> 
