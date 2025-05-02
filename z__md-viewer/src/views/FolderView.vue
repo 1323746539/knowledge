@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import DirectoryTree from '../components/DirectoryTree.vue';
 
 const route = useRoute();
+const router = useRouter();
 const directoryStructure = ref(null);
 const isLoading = ref(true);
 const error = ref(null);
@@ -40,6 +41,10 @@ const fetchDirectoryStructure = async (folder) => {
   }
 };
 
+const goBack = () => {
+  router.push('/');
+}
+
 onMounted(() => {
   const { folder } = route.params;
   fetchDirectoryStructure(folder);
@@ -64,7 +69,10 @@ watch(() => route.params.folder, (newFolder) => {
     
     <div v-else-if="directoryStructure" class="directory-container">
       <div class="sidebar">
-        <h3>{{ route.params.folder }}</h3>
+        <div class="folder-header">
+          <h3 class="folder-name">{{ route.params.folder }}</h3>
+          <div class="back-button" @click="goBack">返回首页</div>
+        </div>
         <DirectoryTree 
           :structure="directoryStructure" 
           :base-folder="route.params.folder"
@@ -81,7 +89,7 @@ watch(() => route.params.folder, (newFolder) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .folder-view {
   display: flex;
   min-height: 100vh;
@@ -114,10 +122,22 @@ watch(() => route.params.folder, (newFolder) => {
   height: calc(100vh - 60px);
 }
 
-.sidebar h3 {
+.sidebar .folder-header {
   margin-top: 0;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  .back-button {
+    cursor: pointer;
+    color: #666;
+    padding: 5px 10px;
+    &:hover {
+      color: #333;
+    }
+  }
 }
 
 .content-placeholder {

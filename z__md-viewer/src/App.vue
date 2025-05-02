@@ -1,28 +1,11 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
   <div class="app-container">
-    <header>
-      <nav>
-        <RouterLink to="/" class="logo">知识库浏览器</RouterLink>
-      </nav>
-    </header>
-
     <RouterView />
   </div>
 </template>
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  background-color: #fafafa;
-}
+<style lang="less">
+
 
 header {
   background-color: #42b883;

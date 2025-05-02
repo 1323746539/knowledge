@@ -81,8 +81,8 @@ app.get('/api/folders', (req, res) => {
       return statSync(itemPath).isDirectory() && 
              !item.startsWith('.') && 
              item !== 'node_modules' &&
-             item !== 'md-viewer' &&
-             item !== 'md-viewer-server';
+             item !== 'z__md-viewer' &&
+             item !== 'z__md-viewer-server';
     });
     
     res.json(folders);

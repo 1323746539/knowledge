@@ -1,10 +1,11 @@
 <script setup>
 import { ref, onMounted, watch, computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import DirectoryTree from '../components/DirectoryTree.vue';
 import MarkdownView from './MarkdownView.vue';
 
 const route = useRoute();
+const router = useRouter();
 const directoryStructure = ref(null);
 const isLoading = ref(true);
 const error = ref(null);
@@ -47,6 +48,10 @@ const fetchDirectoryStructure = async (folder) => {
   }
 };
 
+const goBack = () => {
+  router.push('/');
+}
+
 onMounted(() => {
   if (folderName.value) {
     fetchDirectoryStructure(folderName.value);
@@ -72,7 +77,10 @@ watch(folderName, (newFolder) => {
     
     <div v-else-if="directoryStructure" class="content-container">
       <div class="sidebar">
-        <h3>{{ folderName }}</h3>
+        <div class="folder-header">
+          <h3 class="folder-name">{{ folderName }}</h3>
+          <div class="back-button" @click="goBack">返回首页</div>
+        </div>
         <DirectoryTree 
           :structure="directoryStructure" 
           :base-folder="folderName"
@@ -119,10 +127,22 @@ watch(folderName, (newFolder) => {
   height: calc(100vh - 60px);
 }
 
-.sidebar h3 {
+.sidebar .folder-header {
   margin-top: 0;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  .back-button {
+    cursor: pointer;
+    color: #666;
+    padding: 5px 10px;
+    &:hover {
+      color: #333;
+    }
+  }
 }
 
 .content {

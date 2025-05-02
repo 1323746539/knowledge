@@ -18,6 +18,10 @@ onMounted(async () => {
 const navigateToFolder = (folder) => {
   router.push(`/${folder}`)
 }
+
+const formatFolderName = (folder) => {
+  return folder.split('__')[1]
+}
 </script>
 
 <template>
@@ -36,7 +40,7 @@ const navigateToFolder = (folder) => {
         @click="navigateToFolder(folder)"
       >
         <div class="folder-icon">📁</div>
-        <div class="folder-name">{{ folder }}</div>
+        <div class="folder-name">{{ formatFolderName(folder) }}</div>
       </div>
     </div>
   </div>
@@ -53,6 +57,7 @@ h1 {
   text-align: center;
   margin-bottom: 2rem;
   color: #2c3e50;
+  user-select: none;
 }
 
 .loading {
@@ -91,5 +96,6 @@ h1 {
   font-size: 1rem;
   font-weight: 500;
   color: #2c3e50;
+  user-select: none;
 }
 </style> 

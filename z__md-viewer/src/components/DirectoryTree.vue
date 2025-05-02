@@ -77,6 +77,7 @@ const isActive = (filePath) => {
 <style scoped>
 .directory-tree {
   margin-left: 0.5rem;
+  user-select: none;
 }
 
 .directory-header {
