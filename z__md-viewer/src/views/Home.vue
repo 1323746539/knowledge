@@ -26,7 +26,7 @@ const formatFolderName = (folder) => {
 
 <template>
   <div class="container">
-    <h1>知识库浏览器</h1>
+    <h1>白宇前端</h1>
     
     <div v-if="folders.length === 0" class="loading">
       加载文件夹中...
