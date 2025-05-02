@@ -530,6 +530,26 @@ app.get('/api/static-map', (req, res) => {
   });
 });
 
+// 刷新静态资源并返回最新资源列表
+app.get('/api/refresh-static', (req, res) => {
+  console.log('收到刷新静态资源请求');
+  
+  // 清空现有的静态资源映射
+  Object.keys(staticFileMap).forEach(key => {
+    delete staticFileMap[key];
+  });
+  
+  // 重新收集静态资源
+  collectStaticResources();
+  
+  // 返回简单的成功消息
+  res.json({
+    success: true,
+    timestamp: new Date().toISOString(),
+    message: '静态资源已刷新'
+  });
+});
+
 // 启动服务器前先收集静态资源
 collectStaticResources();
 

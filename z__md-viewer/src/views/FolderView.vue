@@ -150,5 +150,6 @@ watch(() => route.params.folder, (newFolder) => {
 .welcome-message {
   text-align: center;
   color: #666;
+  user-select: none;
 }
 </style> 
