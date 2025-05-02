@@ -17,6 +17,12 @@ const folderName = computed(() => {
   return path.split('/')[0];
 });
 
+// 格式化文件夹名称，移除前缀
+const formattedFolderName = computed(() => {
+  const name = folderName.value;
+  return name.includes('__') ? name.split('__')[1] : name;
+});
+
 // 获取目录结构
 const fetchDirectoryStructure = async (folder) => {
   isLoading.value = true;
@@ -78,7 +84,7 @@ watch(folderName, (newFolder) => {
     <div v-else-if="directoryStructure" class="content-container">
       <div class="sidebar">
         <div class="folder-header">
-          <h3 class="folder-name">{{ folderName }}</h3>
+          <h3 class="folder-name">{{ formattedFolderName }}</h3>
           <div class="back-button" @click="goBack">返回首页</div>
         </div>
         <DirectoryTree 

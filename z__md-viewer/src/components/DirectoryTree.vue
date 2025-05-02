@@ -28,6 +28,15 @@ const openFile = (filePath) => {
 const isActive = (filePath) => {
   return route.params.path === filePath;
 };
+
+// 格式化显示目录名称
+const formatDirName = (dirName) => {
+  // 如果是类似 d__Vue 格式的一级目录，移除前缀
+  if (dirName.includes('__')) {
+    return dirName.split('__')[1];
+  }
+  return dirName;
+};
 </script>
 
 <template>
@@ -59,7 +68,7 @@ const isActive = (filePath) => {
           @click="toggleDir(dir)"
         >
           <span class="directory-icon">{{ dir.isOpen ? '📂' : '📁' }}</span>
-          <span class="directory-name">{{ dir.name }}</span>
+          <span class="directory-name">{{ formatDirName(dir.name) }}</span>
         </div>
         
         <!-- 递归渲染子目录 -->

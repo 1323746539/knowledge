@@ -392,7 +392,16 @@ const replaceImagePaths = (content, basePath) => {
 
 // 构建目录树的函数
 const buildDirectoryTree = (dir, rootDir) => {
-  const tree = { name: dirname(dir).split('/').pop(), path: relative(rootDir, dir), children: [] };
+  // 获取目录的实际名称，而不是路径中的名称
+  const dirName = basename(dir);
+  
+  const tree = { 
+    name: dirName, 
+    path: relative(rootDir, dir), 
+    children: [],
+    // 添加原始路径信息，以便于调试
+    fullPath: dir
+  };
   
   const items = readdirSync(dir);
   
