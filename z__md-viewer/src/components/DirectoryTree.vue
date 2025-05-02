@@ -74,49 +74,57 @@ const isActive = (filePath) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .directory-tree {
   margin-left: 0.5rem;
   user-select: none;
 }
 
-.directory-header {
-  display: flex;
-  align-items: center;
-  padding: 0.25rem 0;
-  cursor: pointer;
-  border-radius: 4px;
+.directory {
+  &-header {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+
+  &-icon {
+    margin-right: 0.5rem;
+  }
 }
 
-.directory-header:hover {
-  background-color: #e0e0e0;
-}
+.file {
+  &-icon {
+    margin-right: 0.5rem;
+  }
 
-.directory-icon, .file-icon {
-  margin-right: 0.5rem;
-}
+  &-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
-.file-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+    li {
+      display: flex;
+      align-items: center;
+      padding: 0.25rem 0;
+      cursor: pointer;
+      border-radius: 4px;
 
-.file-list li {
-  display: flex;
-  align-items: center;
-  padding: 0.25rem 0;
-  cursor: pointer;
-  border-radius: 4px;
-}
+      &:hover {
+        background-color: #e0e0e0;
+      }
 
-.file-list li:hover {
-  background-color: #e0e0e0;
-}
-
-.file-list li.active {
-  background-color: #42b883;
-  color: white;
+      &.active {
+        background-color: #42b883;
+        color: white;
+      }
+    }
+  }
 }
 
 .subdirectory {

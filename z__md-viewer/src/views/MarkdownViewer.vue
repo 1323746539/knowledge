@@ -87,7 +87,7 @@ watch(() => route.params, (newParams) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .markdown-viewer {
   display: flex;
   min-height: 100vh;
@@ -98,39 +98,39 @@ watch(() => route.params, (newParams) => {
   background-color: #f5f5f5;
   padding: 1rem;
   border-right: 1px solid #e0e0e0;
-}
-
-.sidebar h3 {
-  margin-top: 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #e0e0e0;
+  
+  h3 {
+    margin-top: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
 }
 
 .file-list {
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.file-list li {
-  padding: 0.5rem 0;
-}
-
-.file-list li a {
-  color: #2c3e50;
-  text-decoration: none;
-  display: block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-}
-
-.file-list li a:hover {
-  background-color: #e0e0e0;
-}
-
-.file-list li.active a {
-  background-color: #42b883;
-  color: white;
+  
+  li {
+    padding: 0.5rem 0;
+    
+    a {
+      color: #2c3e50;
+      text-decoration: none;
+      display: block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+    
+    &.active a {
+      background-color: #42b883;
+      color: white;
+    }
+  }
 }
 
 .content {
@@ -155,46 +155,46 @@ watch(() => route.params, (newParams) => {
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.6;
-}
-
-.markdown-content :deep(h1) {
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3rem;
-}
-
-.markdown-content :deep(pre) {
-  background-color: #f6f8fa;
-  border-radius: 6px;
-  padding: 16px;
-  overflow: auto;
-}
-
-.markdown-content :deep(code) {
-  background-color: #f6f8fa;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-}
-
-.markdown-content :deep(blockquote) {
-  border-left: 4px solid #dfe2e5;
-  padding: 0 1em;
-  color: #6a737d;
-  margin: 0;
-}
-
-.markdown-content :deep(table) {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1rem 0;
-}
-
-.markdown-content :deep(th), .markdown-content :deep(td) {
-  border: 1px solid #dfe2e5;
-  padding: 8px 12px;
-}
-
-.markdown-content :deep(th) {
-  background-color: #f6f8fa;
-  font-weight: 600;
+  
+  :deep(h1) {
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3rem;
+  }
+  
+  :deep(pre) {
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    padding: 16px;
+    overflow: auto;
+  }
+  
+  :deep(code) {
+    background-color: #f6f8fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  
+  :deep(blockquote) {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 1em;
+    color: #6a737d;
+    margin: 0;
+  }
+  
+  :deep(table) {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+  }
+  
+  :deep(th), :deep(td) {
+    border: 1px solid #dfe2e5;
+    padding: 8px 12px;
+  }
+  
+  :deep(th) {
+    background-color: #f6f8fa;
+    font-weight: 600;
+  }
 }
 </style> 

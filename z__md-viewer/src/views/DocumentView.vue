@@ -94,7 +94,7 @@ watch(folderName, (newFolder) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .document-view {
   display: flex;
   min-height: 100vh;
@@ -125,22 +125,24 @@ watch(folderName, (newFolder) => {
   border-right: 1px solid #e0e0e0;
   overflow-y: auto;
   height: calc(100vh - 60px);
-}
-
-.sidebar .folder-header {
-  margin-top: 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #e0e0e0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  user-select: none;
-  .back-button {
-    cursor: pointer;
-    color: #666;
-    padding: 5px 10px;
-    &:hover {
-      color: #333;
+  
+  .folder-header {
+    margin-top: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    
+    .back-button {
+      cursor: pointer;
+      color: #666;
+      padding: 5px 10px;
+      
+      &:hover {
+        color: #333;
+      }
     }
   }
 }

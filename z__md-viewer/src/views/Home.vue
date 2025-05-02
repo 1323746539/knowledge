@@ -46,7 +46,7 @@ const formatFolderName = (folder) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -67,35 +67,37 @@ h1 {
   color: #666;
 }
 
-.folder-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
-}
+.folder {
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
 
-.folder-card {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 1.5rem;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
+  &-card {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 
-.folder-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  }
 
-.folder-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
+  &-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
 
-.folder-name {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #2c3e50;
-  user-select: none;
+  &-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c3e50;
+    user-select: none;
+  }
 }
 </style> 

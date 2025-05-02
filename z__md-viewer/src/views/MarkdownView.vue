@@ -60,7 +60,7 @@ watch(() => route.params.path, (newPath) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .markdown-view {
   padding: 2rem;
   max-width: 800px;
@@ -82,46 +82,46 @@ watch(() => route.params.path, (newPath) => {
 
 .markdown-content {
   line-height: 1.6;
-}
-
-.markdown-content :deep(h1) {
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3rem;
-}
-
-.markdown-content :deep(pre) {
-  background-color: #f6f8fa;
-  border-radius: 6px;
-  padding: 16px;
-  overflow: auto;
-}
-
-.markdown-content :deep(code) {
-  background-color: #f6f8fa;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-}
-
-.markdown-content :deep(blockquote) {
-  border-left: 4px solid #dfe2e5;
-  padding: 0 1em;
-  color: #6a737d;
-  margin: 0;
-}
-
-.markdown-content :deep(table) {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1rem 0;
-}
-
-.markdown-content :deep(th), .markdown-content :deep(td) {
-  border: 1px solid #dfe2e5;
-  padding: 8px 12px;
-}
-
-.markdown-content :deep(th) {
-  background-color: #f6f8fa;
-  font-weight: 600;
+  
+  :deep(h1) {
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3rem;
+  }
+  
+  :deep(pre) {
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    padding: 16px;
+    overflow: auto;
+  }
+  
+  :deep(code) {
+    background-color: #f6f8fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  
+  :deep(blockquote) {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 1em;
+    color: #6a737d;
+    margin: 0;
+  }
+  
+  :deep(table) {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+  }
+  
+  :deep(th), :deep(td) {
+    border: 1px solid #dfe2e5;
+    padding: 8px 12px;
+  }
+  
+  :deep(th) {
+    background-color: #f6f8fa;
+    font-weight: 600;
+  }
 }
 </style> 
