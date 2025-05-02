@@ -8,7 +8,12 @@ const markdownContent = ref('')
 const htmlContent = ref('')
 const isLoading = ref(true)
 const error = ref(null)
-const md = new MarkdownIt()
+// 配置 MarkdownIt 允许 HTML
+const md = new MarkdownIt({
+  html: true,        // 启用 HTML 标签
+  breaks: true,      // 转换段落里的 '\n' 到 <br>
+  linkify: true      // 自动转换 URL 为链接
+})
 const API_BASE_URL = 'http://localhost:3000'
 
 // 获取并渲染Markdown文件
@@ -23,7 +28,15 @@ const fetchMarkdown = async (path) => {
     }
     
     markdownContent.value = await response.text()
-    htmlContent.value = md.render(markdownContent.value)
+    
+    // 渲染 Markdown 内容为 HTML
+    let renderedContent = md.render(markdownContent.value)
+    
+    // 对于文档中直接写的 HTML 标签，已经在服务端处理过图片路径
+    // 但需要确保它们被正确渲染，而不是被转义
+    htmlContent.value = renderedContent
+    
+    console.log('渲染后的HTML内容', htmlContent.value)
   } catch (err) {
     console.error('获取Markdown内容失败:', err)
     error.value = '获取文档内容失败'
@@ -122,6 +135,15 @@ watch(() => route.params.path, (newPath) => {
   :deep(th) {
     background-color: #f6f8fa;
     font-weight: 600;
+  }
+  
+  :deep(img) {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 }
 </style> 
